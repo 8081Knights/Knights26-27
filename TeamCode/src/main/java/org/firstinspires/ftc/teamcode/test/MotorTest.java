@@ -29,6 +29,10 @@ double BL;
         BLdrive  = hardwareMap.get(DcMotorEx.class, "BLdrive");
         BRdrive  = hardwareMap.get(DcMotorEx.class, "BRdrive");
 
+        FLdrive.setDirection(DcMotorEx.Direction.FORWARD);
+        BLdrive.setDirection(DcMotorEx.Direction.FORWARD);
+        FRdrive.setDirection(DcMotorEx.Direction.FORWARD);
+        BRdrive.setDirection(DcMotorEx.Direction.FORWARD);
     }
 
     @Override

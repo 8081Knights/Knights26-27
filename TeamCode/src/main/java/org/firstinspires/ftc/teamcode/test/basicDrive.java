@@ -107,7 +107,7 @@ public class basicDrive extends OpMode {
     @Override
     public void loop() {
         telemetry.clear();
-
+        manualMechanumDrive();
 //        aprilTagWebcam.update();
 //        List<AprilTagDetection> detections = aprilTagWebcam.getDetectedTags();
 //
@@ -159,6 +159,7 @@ public class basicDrive extends OpMode {
         double x = gamepad1.left_stick_x;
         double rx = gamepad1.right_stick_x;
 
+
         SparkFunOTOS.Pose2D pos = robot.gyro.getPosition();
         double botHeading = -pos.h;
 
@@ -181,10 +182,10 @@ public class basicDrive extends OpMode {
         double x = gamepad1.left_stick_x;
         double rx = gamepad1.right_stick_x;
 
-        robot.FLdrive.setPower(y + rx + x);
-        robot.FRdrive.setPower(y - rx - x);
-        robot.BLdrive.setPower(y + rx - x);
-        robot.BRdrive.setPower(y - rx + x);
+        robot.FLdrive.setPower(y + rx - x);
+        robot.FRdrive.setPower(y + rx - x);
+        robot.BLdrive.setPower(y - rx + x);
+        robot.BRdrive.setPower(y + rx + x);
     }
     }
 

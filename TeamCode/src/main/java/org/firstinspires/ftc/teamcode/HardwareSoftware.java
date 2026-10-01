@@ -57,10 +57,10 @@ public class HardwareSoftware {
         FRdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         BLdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
 
-        FLdrive.setDirection(DcMotorEx.Direction.FORWARD);
+        FLdrive.setDirection(DcMotorEx.Direction.REVERSE);
         BLdrive.setDirection(DcMotorEx.Direction.FORWARD);
-        FRdrive.setDirection(DcMotorEx.Direction.FORWARD);
-        BRdrive.setDirection(DcMotorEx.Direction.FORWARD);
+        FRdrive.setDirection(DcMotorEx.Direction.REVERSE);
+        BRdrive.setDirection(DcMotorEx.Direction.REVERSE);
 
         FLdrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         BRdrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);

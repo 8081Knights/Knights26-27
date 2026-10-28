@@ -15,6 +15,8 @@ DcMotorEx FRdrive = null;
 DcMotorEx BLdrive = null;
 DcMotorEx BRdrive = null;
 
+DcMotorEx PollenMotor = null;
+
 double FR;
 double FL;
 double BR;
@@ -28,7 +30,7 @@ double BL;
         FRdrive  = hardwareMap.get(DcMotorEx.class, "FRdrive");
         BLdrive  = hardwareMap.get(DcMotorEx.class, "BLdrive");
         BRdrive  = hardwareMap.get(DcMotorEx.class, "BRdrive");
-
+        PollenMotor = hardwareMap.get(DcMotorEx.class, "PollenMotor");
         FLdrive.setDirection(DcMotorEx.Direction.FORWARD);
         BLdrive.setDirection(DcMotorEx.Direction.FORWARD);
         FRdrive.setDirection(DcMotorEx.Direction.FORWARD);
@@ -47,7 +49,11 @@ double BL;
         BLdrive.setPower(BL);
         BRdrive.setPower(BR);
 
-
+if (gamepad1.a){
+    PollenMotor.setPower(0.9);
+}else {
+    PollenMotor.setPower(0);
+}
 
     }
 }

@@ -24,6 +24,10 @@ public class HardwareSoftware {
     public DcMotorEx BLdrive = null;
     public DcMotorEx FLdrive = null;
 
+    public DcMotorEx PollenMotor = null;
+
+    public DcMotorEx NectarMotor = null;
+
 
     public CRServo FRintake = null;
     public Servo Flip = null;
@@ -46,6 +50,8 @@ public class HardwareSoftware {
         FRdrive = hw.get(DcMotorEx.class, "FRdrive");
         BLdrive = hw.get(DcMotorEx.class, "BLdrive");
         BRdrive = hw.get(DcMotorEx.class, "BRdrive");
+        PollenMotor = hw.get(DcMotorEx.class, "PollenMotor");
+        NectarMotor = hw.get(DcMotorEx.class, "NectarMotor");
 
 
         //sorterTJ = new Sorter(hw, "sorterA", BallState.EMPTY, 0.7, 0.5, "ColorSensor1", "ColorSensor2");
@@ -57,10 +63,13 @@ public class HardwareSoftware {
         FRdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
         BLdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
 
+        PollenMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        NectarMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+
         FLdrive.setDirection(DcMotorEx.Direction.REVERSE);
-        BLdrive.setDirection(DcMotorEx.Direction.FORWARD);
+        BLdrive.setDirection(DcMotorEx.Direction.REVERSE);
         FRdrive.setDirection(DcMotorEx.Direction.REVERSE);
-        BRdrive.setDirection(DcMotorEx.Direction.REVERSE);
+        BRdrive.setDirection(DcMotorEx.Direction.FORWARD);
 
         FLdrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         BRdrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);

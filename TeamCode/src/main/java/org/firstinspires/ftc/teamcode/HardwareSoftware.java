@@ -17,7 +17,6 @@ public class HardwareSoftware {
 
     private HardwareMap hw = null;
 
-
     //wheels
     public DcMotorEx FRdrive = null;
     public DcMotorEx BRdrive = null;
@@ -25,8 +24,8 @@ public class HardwareSoftware {
     public DcMotorEx FLdrive = null;
 
     public DcMotorEx PollenMotor = null;
-
     public DcMotorEx NectarMotor = null;
+    public DcMotorEx Intake = null;
 
 
     public CRServo FRintake = null;
@@ -52,23 +51,29 @@ public class HardwareSoftware {
         BRdrive = hw.get(DcMotorEx.class, "BRdrive");
         PollenMotor = hw.get(DcMotorEx.class, "PollenMotor");
         NectarMotor = hw.get(DcMotorEx.class, "NectarMotor");
+        Intake = hw.get(DcMotorEx.class, "Intake");
+
 
 
         //sorterTJ = new Sorter(hw, "sorterA", BallState.EMPTY, 0.7, 0.5, "ColorSensor1", "ColorSensor2");
         gyro = hw.get(SparkFunOTOS.class, "gyro");
 
 
-        FLdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-        BRdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-        FRdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-        BLdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+//        FLdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+//        BRdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+//        FRdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+//        BLdrive.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        FLdrive.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        BRdrive.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        FRdrive.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        BLdrive.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
         PollenMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         NectarMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
         FLdrive.setDirection(DcMotorEx.Direction.REVERSE);
         BLdrive.setDirection(DcMotorEx.Direction.REVERSE);
-        FRdrive.setDirection(DcMotorEx.Direction.REVERSE);
+        FRdrive.setDirection(DcMotorEx.Direction.FORWARD);
         BRdrive.setDirection(DcMotorEx.Direction.FORWARD);
 
         FLdrive.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);

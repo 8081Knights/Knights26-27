@@ -91,13 +91,15 @@ public class BasicDriveIntake extends OpMode {
     public void loop() {
         telemetry.clear();
         manualMechanumDrive();
+        intakeRun();
+
         if(gamepad2.right_bumper){
-            robot.PollenMotor.setVelocity(800);
+            robot.PollenMotor.setVelocity(1000);
         }else {
             robot.PollenMotor.setVelocity(0);
         }
         if(gamepad2.left_bumper){
-            robot.NectarMotor.setVelocity(800);
+            robot.NectarMotor.setVelocity(910);
         }else {
             robot.NectarMotor.setVelocity(0);
         }
@@ -138,36 +140,26 @@ public class BasicDriveIntake extends OpMode {
     /**
      * this method handles headless math and controls robot
      */
-//    public void intakeRun(){
-//        if(gamepad1.right_trigger > 0.1){
-//            robot.Intake.setPower(.85);
-//        } else if (gamepad1.left_trigger >0.1){
-//            robot.Intake.setPower(-.85);
-//        } else {
-//            robot.Intake.setPower(0);
-//        }
-//    }
+    public void intakeRun(){
+        if(gamepad1.right_trigger > 0.1){
+            robot.Intake.setPower(.85);
+        } else if (gamepad1.left_trigger >0.1){
+            robot.Intake.setPower(-.85);
+        } else {
+            robot.Intake.setPower(0);
+        }
+    }
     public void manualHeadlessDrive () {
         double y = -gamepad1.left_stick_y;
         double x = gamepad1.left_stick_x;
         double rx = gamepad1.right_stick_x;
 
 
-//        if(gamepad2.right_trigger > 0.2){
-//            robot.PollenMotor.setVelocity(1000);
-//        }else {
-//            robot.PollenMotor.setVelocity(0);
-//        }
-//        if(gamepad2.left_trigger > 0.2){
-//            robot.NectarMotor.setVelocity(1000);
-//        }else {
-//            robot.NectarMotor.setVelocity(0);
-//        }
+
 
 
         SparkFunOTOS.Pose2D pos = robot.gyro.getPosition();
         double botHeading = -pos.h;
-
         double theta = botHeading;
 
         theta = Math.toRadians(theta);

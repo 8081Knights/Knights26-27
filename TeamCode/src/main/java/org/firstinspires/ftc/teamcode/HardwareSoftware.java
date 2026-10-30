@@ -68,6 +68,11 @@ public class HardwareSoftware {
         FRdrive.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         BLdrive.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
+//        FLdrive.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+//        BRdrive.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+//        FRdrive.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+//        BLdrive.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+
         PollenMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         NectarMotor.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 

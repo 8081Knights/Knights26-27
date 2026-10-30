@@ -31,11 +31,15 @@ public class HeadlessIntake  extends OpMode{
 
         double[] initPositions = {0, 0, 0};
 
-        // CurrentRobotPose currentPose = new CurrentRobotPose();
+    public Pose2D getAbsPosOfGryoStart() {
+        return absPosOfGryoStart;
+    }
 
-        DecimalFormat df = new DecimalFormat("#.##");
+    DecimalFormat df = new DecimalFormat("#.##");
 
-        //  SparkFunOTOS.Pose2D pos;
+        SparkFunOTOS.Pose2D pos;
+        Pose2D absPosOfGryoStart = null;
+        Pose2D absPosOfRobot = null;
 
         double cTreshold = .5;
         boolean isMovingToSetPos = false;
@@ -48,8 +52,7 @@ public class HeadlessIntake  extends OpMode{
 //    Pose2D redTagPos = new Pose2D(DistanceUnit.INCH, 132, 120, AngleUnit.DEGREES, 225);
 //    Pose2D blueTagPos = new Pose2D(DistanceUnit.INCH, 12, 120, AngleUnit.DEGREES, 315);
 //    Pose2D currentTagPos = null;
-//    Pose2D absPosOfGryoStart = null;
-//    Pose2D absPosOfRobot = null;
+
 
 
         //telemetry, not used for calculations
@@ -84,14 +87,17 @@ public class HeadlessIntake  extends OpMode{
             robot.init(hardwareMap);
 //        aprilTagWebcam.init(hardwareMap, telemetry);
 //        turret.init(robot.turret);
-          robot.initGyro();
+            robot.initGyro();
+
+
 //        currentPose.init(robot, initPositions[0], initPositions[1], initPositions[2]);
         }
 
         @Override
         public void loop() {
             telemetry.clear();
-            manualMechanumDrive();
+           // manualMechanumDrive();
+            manualHeadlessDrive ();
             intakeRun();
 
             if(gamepad2.right_bumper){
@@ -104,37 +110,18 @@ public class HeadlessIntake  extends OpMode{
             }else {
                 robot.NectarMotor.setVelocity(0);
             }
-            telemetry.addData("works ", gamepad2.right_bumper);
+            telemetry.addData("works ", gamepad1.b);
 //        intakeRun();
 
 
-
-
-//        aprilTagWebcam.update();
-//        List<AprilTagDetection> detections = aprilTagWebcam.getDetectedTags();
-//
-//        turretTag = null;
-//
-//        for (AprilTagDetection tag : detections) {
-//            if (tag.id == blueTagId) {
-//                turretTag = tag;
-//                break;
-//            }
-//        }
-
             // telemetry.addData("Voltage", hardwareMap.voltageSensor.get("Control Hub").getVoltage());
 
-
-            //can change to mechanum by changing line 247
-
-
-
-//        if (gamepad1.bWasPressed()) {
-//            robot.gyro.resetTracking();
-//            absPosOfRobot = null;
-//            absPosOfGryoStart = null;
-//            turretTag = null;
-//        }
+        if (gamepad1.bWasPressed()) {
+            robot.gyro.resetTracking();
+            absPosOfRobot = null;
+            absPosOfGryoStart = null;
+         //   turretTag = null;
+        }
         }
 //
 
@@ -150,29 +137,33 @@ public class HeadlessIntake  extends OpMode{
                 robot.Intake.setPower(0);
             }
         }
+
         public void manualHeadlessDrive () {
             double y = -gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
 
 
-
-
-
             SparkFunOTOS.Pose2D pos = robot.gyro.getPosition();
             double botHeading = -pos.h;
             double theta = botHeading;
-
-            theta = Math.toRadians(theta);
+         //    theta =       Math.toRadians(botHeading);
 
             double rotX = x * Math.cos(theta) - y * Math.sin(theta);
             double rotY = x * Math.sin(theta) + y * Math.cos(theta);
 
             double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+
             robot.FLdrive.setPower(((rotY + rx + rotX) / denominator));
             robot.FRdrive.setPower(((rotY - rx - rotX) / denominator));
             robot.BLdrive.setPower(((rotY + rx - rotX) / denominator));
             robot.BRdrive.setPower(((rotY - rx + rotX) / denominator));
+
+
+            telemetry.addData("x ", pos.x);
+            telemetry.addData("y ", pos.y);
+            telemetry.addData("heading ", theta);
+
         }
 
         public void manualMechanumDrive () {

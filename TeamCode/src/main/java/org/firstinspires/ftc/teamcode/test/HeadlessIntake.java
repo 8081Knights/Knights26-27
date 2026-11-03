@@ -70,6 +70,9 @@ public class HeadlessIntake  extends OpMode{
         private boolean servoCPressed;
         private boolean isRamped = false;
 
+        //Below boolean for Pollen Feeder Toggle
+        public boolean PollenIsFeeding = false;
+
 
 //    private AprilTagWebcam aprilTagWebcam = new AprilTagWebcam();
 //    private TurretPDTUNE turret = new TurretPDTUNE();
@@ -100,13 +103,14 @@ public class HeadlessIntake  extends OpMode{
             manualHeadlessDrive ();
             intakeRun();
 
+
             if(gamepad2.right_bumper){
                 robot.PollenMotor.setVelocity(1000);
             }else {
                 robot.PollenMotor.setVelocity(0);
             }
             if(gamepad2.left_bumper){
-                robot.NectarMotor.setVelocity(910);
+                robot.NectarMotor.setVelocity(-910);
             }else {
                 robot.NectarMotor.setVelocity(0);
             }
@@ -124,6 +128,17 @@ public class HeadlessIntake  extends OpMode{
         }
         }
 //
+        public void updateInput() {
+            if (PollenIsFeeding == false) {
+                robot.PollenServo.setPower(1);
+                PollenIsFeeding = true;
+            } else if (PollenIsFeeding == true) {
+                //stop Feeder
+                PollenIsFeeding = false;
+                robot.PollenServo.setPower(0);
+            } else {
+            }
+        }
 
         /**
          * this method handles headless math and controls robot

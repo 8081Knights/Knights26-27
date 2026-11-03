@@ -28,9 +28,7 @@ public class basicDrive extends OpMode {
     //current teleop for matches, both colors
     //MATCHES
     //TODO: need to do auto for this comp
-    // then after that get the hooded shooter and turntable to work
-    // then make sure the other code(turn and go to ball, shooting autonomously, drive stuff)
-    // are all standard and implemented properly
+
     HardwareSoftware robot = new HardwareSoftware();
 
     double[] initPositions = {0, 0, 0};

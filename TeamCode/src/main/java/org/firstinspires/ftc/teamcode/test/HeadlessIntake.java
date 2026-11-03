@@ -110,7 +110,7 @@ public class HeadlessIntake  extends OpMode{
                 robot.PollenMotor.setVelocity(0);
             }
             if(gamepad2.left_bumper){
-                robot.NectarMotor.setVelocity(-910);
+                robot.NectarMotor.setVelocity(-1050);
             }else {
                 robot.NectarMotor.setVelocity(0);
             }

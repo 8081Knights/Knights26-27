@@ -62,7 +62,7 @@ import org.firstinspires.ftc.teamcode.HardwareSoftware;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@Autonomous(name="REDSHOOTERAUTO :)", group="robot")
+@Autonomous(name="PracticeAuto :)", group="robot")
 
 public class AutoMovePractice extends LinearOpMode {
     HardwareSoftware robot = new HardwareSoftware();
@@ -113,7 +113,7 @@ public class AutoMovePractice extends LinearOpMode {
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
-        strafeDrive(DRIVE_SPEED,  10,  10, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
+        strafeDrive(DRIVE_SPEED,  10,  5.0);  // S1: Forward 47 Inches with 5 Sec timeout
 
 
 
@@ -131,7 +131,7 @@ public class AutoMovePractice extends LinearOpMode {
      *  3) Driver stops the OpMode running.
      */
     public void forwardDrive(double speed,
-                             double leftInches, double rightInches,
+                              double inches,
                              double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
@@ -140,10 +140,10 @@ public class AutoMovePractice extends LinearOpMode {
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = robot.FLdrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newLeftTarget = robot.BLdrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
-            newRightTarget = robot.FRdrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
-            newRightTarget = robot.BRdrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCH);
+            newLeftTarget = robot.FLdrive.getCurrentPosition() + (int)(inches * COUNTS_PER_INCH);
+            newLeftTarget = robot.BLdrive.getCurrentPosition() + (int)(inches * COUNTS_PER_INCH);
+            newRightTarget = robot.FRdrive.getCurrentPosition() + (int)(inches * COUNTS_PER_INCH);
+            newRightTarget = robot.BRdrive.getCurrentPosition() + (int)(inches * COUNTS_PER_INCH);
             robot.FLdrive.setTargetPosition(newLeftTarget);
             robot.BLdrive.setTargetPosition(newLeftTarget);
             robot.FRdrive.setTargetPosition(newRightTarget);
@@ -270,8 +270,8 @@ public class AutoMovePractice extends LinearOpMode {
     }
 // USE NEGATIVE SIGN IF U WANT TO STRAFE LEFT
     public void strafeDrive(double speed,
-                             double leftInches, double rightInches,
-                             double timeoutS) {
+                            double inches,
+                             double timeout){
         int newFLTarget;
         int newFRTarget;
         int newBLTarget;
@@ -281,10 +281,10 @@ public class AutoMovePractice extends LinearOpMode {
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newFLTarget = robot.FLdrive.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCHSTRAFE);
-            newFRTarget = robot.BLdrive.getCurrentPosition() - (int)(leftInches * COUNTS_PER_INCHSTRAFE);
-            newBLTarget = robot.FRdrive.getCurrentPosition() - (int)(rightInches * COUNTS_PER_INCHSTRAFE);
-            newBRTarget = robot.BRdrive.getCurrentPosition() + (int)(rightInches * COUNTS_PER_INCHSTRAFE);
+            newFLTarget = robot.FLdrive.getCurrentPosition() + (int)(inches * COUNTS_PER_INCHSTRAFE);
+            newFRTarget = robot.BLdrive.getCurrentPosition() - (int)(inches * COUNTS_PER_INCHSTRAFE);
+            newBLTarget = robot.FRdrive.getCurrentPosition() - (int)(inches * COUNTS_PER_INCHSTRAFE);
+            newBRTarget = robot.BRdrive.getCurrentPosition() + (int)(inches * COUNTS_PER_INCHSTRAFE);
             robot.FLdrive.setTargetPosition(newFLTarget);
             robot.BLdrive.setTargetPosition(newFRTarget);
             robot.FRdrive.setTargetPosition(newBLTarget);
@@ -310,7 +310,7 @@ public class AutoMovePractice extends LinearOpMode {
             // However, if you require that BOTH motors have finished their moves before the robot continues
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
-                    (runtime.seconds() < timeoutS) &&
+                    (runtime.seconds() < timeout) &&
                     (robot.FLdrive.isBusy() && robot.FRdrive.isBusy()) &&
                     (robot.BLdrive.isBusy() && robot.BRdrive.isBusy())) {
 

@@ -114,8 +114,7 @@ public class AutoMove extends LinearOpMode {
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
 
         strafeDrive(DRIVE_SPEED,  10,  10, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
-
-
+        
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

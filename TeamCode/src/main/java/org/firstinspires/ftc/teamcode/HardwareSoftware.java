@@ -26,6 +26,7 @@ public class HardwareSoftware {
     public DcMotorEx PollenMotor = null;
     public DcMotorEx NectarMotor = null;
     public DcMotorEx Intake = null;
+    public CRServo PollenServo = null;
 
 
     public CRServo FRintake = null;
@@ -52,6 +53,7 @@ public class HardwareSoftware {
         PollenMotor = hw.get(DcMotorEx.class, "PollenMotor");
         NectarMotor = hw.get(DcMotorEx.class, "NectarMotor");
         Intake = hw.get(DcMotorEx.class, "Intake");
+        PollenServo = hw.get(CRServo.class, "PollenServo");
 
 
 
